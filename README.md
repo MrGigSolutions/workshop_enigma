@@ -1,5 +1,5 @@
 # Workshop mob programming
-Create an enigma machine
+Create an Enigma machine
 
 ## About mob programming
 ### Benefits:
@@ -23,4 +23,15 @@ For this session, we'll switch roles every 5 minutes (normally it's longer). The
 
 ### For this session:
 - We will use TDD: write a failing test and then fix it by implementing new functionality or correcting old functionality. Always start with a test!
-- As a navigator, it can be tempting to undo the work that the previous navigator did, if it is not how you would do it. Try not to do this - explore what the other navigator was trying to before discarding it!
+- As a navigator, it can be tempting to undo the work that the previous navigator did, if it is not how you would do it.
+  Try not to do this - explore what the other navigator was trying to before discarding it!
+
+### To get started:
+- Create a folder and `cd` into it
+- Create a virtual environment with `python -m venv .venv`
+- Activate the environment with `source .venv/bin/activate` (Linux) or `.\.venv\Scripts\activate` (Windows)
+- Install copier: `pip install copier`
+- Copy this template with `copier copy https://www.github.com/MrGigSolutions/workshop_enigma .`
+- Follow the template instructions.
+- Your team will have its own folder in which to play. Try to only work in your own folder,
+  as the other teams will be working in theirs.
