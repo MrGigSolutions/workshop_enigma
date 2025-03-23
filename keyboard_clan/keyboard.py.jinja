@@ -1,3 +1,4 @@
+{% if number_of_team == 2 %}
 """
 
 from typing import Callable
@@ -146,3 +147,4 @@ def run(
         state = get_command(state, enigma, input_command_callback)
 
 """
+{% endif %}
