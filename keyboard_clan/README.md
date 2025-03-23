@@ -1,26 +1,48 @@
-# Workshop mob programming
-Create an enigma machine
+## The Keyboard Clan
+You will be responsible for the machine's front end and UI. To this end,
+you'll do the following tasks:
+1. Write a command prompt utility. The user should be given a welcome message,
+   and allow the user to type the letter Q to quit.
+2. If the user types in a wrong/unknown command, the utility should give the
+   user feedback, and allow the user to try again.
+3. Add an E option (for encrypt). Only letters A-Z should be allowed. On
+   success, the prompt should return the "encrypted" message:
+   `[KEY][MESSAGE]` (without the brackets). E.g. key `XYZ`, message `HELLO`
+   should return `XYZHELLO`
+4. Add a D option for (decrypt). This should allow the user to type in a
+   message in the format above, e.g. `XYZHELLO`, and should now output `HELLO`.
+   Also, the key should now be set to `XYZ`
+5. Add a K option (for "set key"). This should be followed by a prompt for the
+   user to type in a 3 letter key. Only letters A-Z are allowed, and the key
+   must be exactly 3 letters. If the user does it wrong, let them try again.
+   But also allow the user a way to exit this option, e.g. by escape or typing
+   only a Q. Confirm the output to the user.
+6. Add an L option (for listing plugs). If the user enters this command, the
+   output should be a list of letter pairs, e.g. `["AB", "CD", "EF"]`. The list
+   should be empty when called the first time. but we'll populate it in the next
+   step. The plugs are reflected in the `plugs` list in the `Enigma` object, and
+   will be one of the first things implemented by The Wire Warriors.
+7. Add a P option (for adding plugs). Entering this option should allow the user
+   to add a letter pair to the plug list. Requirements: every letter may only
+   occur once in the list (whether first or second in the pair). There may only
+   be pairs of letters, not 3, or 1. Give the user some feedback whether the
+   plug was added successfully.
+8. Add an R option (for remove plugs). This will clear the combinations from the
+   list and should display a list.
+9. Optional: Add an S option for setting the position of the rotors. The input
+   should be 3 indexes from 1-26, separated by commas, and these represent the
+   positions of the rotors. For each entered value, convert the entered value
+   to an integer between 1 and 26, and call the `set_rotors(x, y, z)` with each
+   of the values.
+10. Optional: make it more user friendly! Implement a help function, show the
+    current key before any prompt.
 
-## About mob programming
-### Benefits:
-(https://www.techtarget.com/searchsoftwarequality/definition/mob-programming)
-- **Enables continuous learning** - Everyone has total access to the shared knowledge of team members. Teams can quickly solve problems that come up, and team members [continuously learn](https://www.techtarget.com/whatis/definition/continuous-learning) more about the development process.
-- **Ensures coding standards are met** - By having the navigator and mob review the code as the driver writes it, the team can make sure coding standards are met. Having another separate code review is not required. Best practices can also be reviewed in real time.
-- **Overcomes individual weaknesses** - As development continues, the strengths and weaknesses of individual team members become more obvious. With shared access to knowledge, those team members can learn how to address those weaknesses.
-- **Provides fast feedback** - Constant feedback can be given and discussed by mob members.
-- **Enables continuous work** - If one team member is out of office, work can continue as planned.
-- **Cultivates both hard and soft skills** - Not only do team members enhance their technical skills, but they also develop soft skills, like communication and time management abilities.
-
-### How it works:
-There are 3 roles in mob programming:
-- The mob: a group of developers responsible for discussing the program and coming up with good ideas to improve it
-- The navigator: listens to the mobs discussions, and communicates instructions to the driver. The navigator is the decision maker on where to go with the code.
-- The driver: the driver converts the navigator's instructions into code. The driver shows NO initiative! He may only convert the instructions into code
-For this session, we'll switch roles every 5 minutes (normally it's longer). The navigator becomes the driver. The driver becomes the mob.
-- On switching, immediately drop what you are doing, even in the middle of writing something. Do not finish, the next driver will take over
-- 5 minutes stat as soon as everyone has assumed their positions
-- If there are more than 3 mob members in a group: switch 1 mob member to the next group this group can carry progress reports or instructions to the next group.
-
-### For this session:
-- We will use TDD: write a failing test and then fix it by implementing new functionality or correcting old functionality. Always start with a test!
-- As a navigator, it can be tempting to undo the work that the previous navigator did, if it is not how you would do it. Try not to do this - explore what the other navigator was trying to before discarding it!
+**Dependencies**
+- After the Wire Warriors have finished their step 1, change your step 1 to
+  instantiate a new Enigma object when the application starts.
+- After the  Wire Warriors have finished their step 2, change your step 2 code
+  to call their `set_key(...)` with the letters the user has entered.
+- After The Wire Warriors have finished their step 5, change the Encrypt
+  feature of Step 6 to use their `encrypt(message)` function.
+- After The Wire Warriors have finished their step 6, change the Decrypt
+  feature of Step 7 to use their `decrypt(message)` function
