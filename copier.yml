@@ -1,7 +1,7 @@
 # Questions
 number_of_teams:
     type: int
-    question: "How many teams will participate in the workshop?"
+    help: "How many teams will participate in the workshop?"
     default: 3
     choices:
       - 2
