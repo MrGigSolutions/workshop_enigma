@@ -19,8 +19,9 @@ There are 3 roles in mob programming:
 
 For this session, we'll switch roles every 5 minutes (normally it's longer). The navigator becomes the driver. The driver becomes the mob.
 - On switching, immediately drop what you are doing, even in the middle of writing something. Do not finish, the next driver will take over
-- 5 minutes stat as soon as everyone has assumed their positions
-- If there are more than 3 mob members in a group: switch 1 mob member to the next group this group can carry progress reports or instructions to the next group.
+- 5 minutes start as soon as everyone has assumed their positions
+- It may be an idea to assign 1 of your mob members to have a quick check with the other
+  teams now and then, especially if you have mutual dependencies!
 
 ### For this session:
 - We will use TDD: write a failing test and then fix it by implementing new functionality or correcting old functionality. Always start with a test!
