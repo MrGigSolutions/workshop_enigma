@@ -1,3 +1,5 @@
+"""
+
 from typing import Callable
 
 from wire_warriors.machine import Enigma
@@ -119,15 +121,17 @@ def handle_state(state: str, enigma: Enigma, output_command_callback: Callable[[
         output_command_callback(decrypt_message(enigma, state[14:]))
         return None
     if state == "help":
-        help_message = """You may select one of the following options:
-    - h - This help message
-    - e - Encrypt a message using the current key
-    - d - Decrypt a message. The message should be prefaced with a 3 letter key.
-    - k - Change the current key
-    - l - List the current plug settings
-    - r - remove the current plug settings
-    - p - Add a plug pair"""
-        output_command_callback(help_message)
+        help_message = [
+            "You may select one of the following options:"
+            "   - h - This help message"
+            "   - e - Encrypt a message using the current key"
+            "   - d - Decrypt a message. The message should be prefaced with a 3 letter key."
+            "   - k - Change the current key"
+            "   - l - List the current plug settings"
+            "   - r - remove the current plug settings"
+            "   - p - Add a plug pair"
+        ]
+        output_command_callback("\n".join(help_message))
         return None
     return state
 
@@ -140,4 +144,3 @@ def run(
     state = None
     while state != "quitting":
         state = get_command(state, enigma, input_command_callback)
-        state = handle_state(state, enigma, output_command_callback)
