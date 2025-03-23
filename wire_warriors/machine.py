@@ -1,25 +1,22 @@
-from rotor.rotor import Rotor
+from revolutionaries.rotor import Rotor
+
 
 class Enigma:
 
     plugs: list[str] = []
     reflector: list[str] = []
     rotors: list[Rotor] = []
+    original_key: str
 
-    def __init__(
-        self,
-        plugs: list[str],
-        reflector: list[str],
-        rotor1: Rotor,
-        rotor2: Rotor,
-        rotor3: Rotor
-    ):
+    def __init__(self, plugs: list[str], reflector: list[str], rotor1: Rotor, rotor2: Rotor, rotor3: Rotor):
         self.plugs = plugs
         self.reflector = reflector
         self.rotors = [rotor1, rotor2, rotor3]
+        self.original_key = self.get_key()
 
     def reset(self):
         self.plugs = []
+        self.set_key(self.original_key)
 
     def _reflected(self, letter: str, reflections: list[str]):
         for reflection in reflections:
@@ -52,9 +49,7 @@ class Enigma:
         return letter
 
     def get_key(self):
-        return ''.join(
-            [r.get_position() for r in self.rotors]
-        )
+        return "".join([r.get_position() for r in self.rotors])
 
     def encode(self, message):
         result = []

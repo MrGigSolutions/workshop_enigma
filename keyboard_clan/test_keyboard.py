@@ -1,31 +1,19 @@
-from typing import Callable
-import pytest
+from revolutionaries.rotor import Rotor
+from wire_warriors.machine import Enigma
 
-from .keyboard import get_prompt, get_command, run
-from plugs.plugs import Enigma
-from rotor.rotor import Rotor
+from .keyboard import get_command, get_prompt, run
 
 
-class TestKeyboard():
+class TestKeyboard:
 
     prompts: list[str] = []
     commands: list[str] = []
     machine: Enigma = Enigma(
         plugs=[],
-        reflector=['QM', 'WN', 'EB', 'RV', 'TC', 'YX', 'UZ', 'IA']
-        + ['OS', 'PD', 'LF', 'KG', 'JH'],
-        rotor1=Rotor(
-            "QAZWSXEDCR'FVTGBYHNUJMIKOLP",
-"WJAGOKCPEHLTXFBNIMVUYQZDRS"
-        ),
-        rotor2=Rotor(
-            "HARGCNWVXSJFPYZODUIELT'KMQB",
-            "EUPNJRTZGSXVBFKMALWDIHOCQY"
-        ),
-        rotor3=Rotor(
-            "BFLHQZXRKGSNAU'JDTWYCOEVMPI",
-            "TSRQXDZEUNMPHLYVBJIWCAGOFK"
-        ),
+        reflector=["QM", "WN", "EB", "RV", "TC", "YX", "UZ", "IA"] + ["OS", "PD", "LF", "KG", "JH"],
+        rotor1=Rotor("QAZWSXEDCR'FVTGBYHNUJMIKOLP", "WJAGOKCPEHLTXFBNIMVUYQZDRS"),
+        rotor2=Rotor("HARGCNWVXSJFPYZODUIELT'KMQB", "EUPNJRTZGSXVBFKMALWDIHOCQY"),
+        rotor3=Rotor("BFLHQZXRKGSNAU'JDTWYCOEVMPI", "TSRQXDZEUNMPHLYVBJIWCAGOFK"),
     )
 
     def reset(self):
@@ -36,11 +24,13 @@ class TestKeyboard():
     def add_to_prompt(self):
         def append_prompt(prompt: str):
             self.prompts.append(prompt)
+
         return append_prompt
 
     def add_to_commands(self):
         def append_command(command: str):
             self.commands.append(command)
+
         return append_command
 
     def simulate_command(self):
@@ -59,25 +49,24 @@ class TestKeyboard():
     def test_get_command(self):
         assert "quitting" == get_command(
             None,
+            self.machine,
             self.simulate_command(),
         )
         assert "quitting" == get_command(
             None,
+            self.machine,
             self.simulate_command(),
         )
         self.commands = ["z"]
         self.prompts = []
         assert "invalid_command" == get_command(
             None,
+            self.machine,
             self.simulate_command(),
         )
 
     def _run_keyboard(self):
-        run(
-            self.machine,
-            self.simulate_command(),
-            self.add_to_prompt()
-        )
+        run(self.machine, self.simulate_command(), self.add_to_prompt())
 
     def assert_commands_and_prompts(self, commands: list[str], prompts: list[str]):
         self.reset()
@@ -88,146 +77,141 @@ class TestKeyboard():
         assert self.prompts == prompts
 
     def test_run(self):
-        self.assert_commands_and_prompts(
-            ["q"],
-            ["Please enter your command > "]
-        )
+        self.assert_commands_and_prompts(["q"], ["QHB | Please enter your command > "])
 
-        self.assert_commands_and_prompts(
-            [],
-            ["Please enter your command > "]
-        )
+        self.assert_commands_and_prompts([], ["QHB | Please enter your command > "])
 
     def test_run_set_key(self):
         self.assert_commands_and_prompts(
-            ["k","q"],
+            ["k", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 3-letter key > "
-            ]
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 3-letter key > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["k", "abc", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 3-letter key > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 3-letter key > ",
                 'Set key "ABC".',
-                "Please enter your command > ",
-            ]
+                "ABC | Please enter your command > ",
+            ],
         )
 
     def test_run_list_plugs(self):
+        self.machine.reset()
         self.assert_commands_and_prompts(
             ["l", "q"],
             [
-                "Please enter your command > ",
+                "QHB | Please enter your command > ",
                 "Current plug state: []",
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "ab", "l"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'Added plug "AB"',
-                "Please enter your command > ",
+                "QHB | Please enter your command > ",
                 "Current plug state: [AB]",
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
 
     def test_run_add_plugs(self):
         self.assert_commands_and_prompts(
             ["p", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
-            ]
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
-            ]
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "ab", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'Added plug "AB"',
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "ab", "p", "ab", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'Added plug "AB"',
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'The letters "A" and "B" are already plugged.',
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "ab", "p", "bc", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'Added plug "AB"',
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'The letters "B" are already plugged.',
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
 
     def test_run_clear_plugs(self):
         self.assert_commands_and_prompts(
             ["r", "q"],
             [
-                "Please enter your command > ",
+                "QHB | Please enter your command > ",
                 "Current plug state: []",
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
         self.assert_commands_and_prompts(
             ["p", "ab", "r", "q"],
             [
-                "Please enter your command > ",
-                "Please enter a 2-letter plug combination > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 2-letter plug combination > ",
                 'Added plug "AB"',
-                "Please enter your command > ",
+                "QHB | Please enter your command > ",
                 "Current plug state: []",
-                "Please enter your command > ",
-            ]
+                "QHB | Please enter your command > ",
+            ],
         )
 
     def test_encrypt_message(self):
         self.assert_commands_and_prompts(
             ["k", "zxy", "e", "hello"],
             [
-                "Please enter your command > ",
-                "Please enter a 3-letter key > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter a 3-letter key > ",
                 'Set key "ZXY".',
-                "Please enter your command > ",
-                "Please enter the message to encrypt > ",
+                "ZXY | Please enter your command > ",
+                "ZXY | Please enter the message to encrypt > ",
                 "Encrypted message: ZXYWKKPL",
-                "Please enter your command > ",
-            ]
+                "DXY | Please enter your command > ",
+            ],
         )
 
     def test_decrypt_message(self):
         self.assert_commands_and_prompts(
             ["d", "zxywkkpl"],
             [
-                "Please enter your command > ",
-                "Please enter the message to decrypt > ",
+                "QHB | Please enter your command > ",
+                "QHB | Please enter the message to decrypt > ",
                 "Decrypted message: HELLO",
-                "Please enter your command > ",
-            ]
+                "DXY | Please enter your command > ",
+            ],
         )

@@ -1,8 +1,11 @@
 from typing import Callable
 
-from plugs.plugs import Enigma
+from wire_warriors.machine import Enigma
 
-def get_prompt(state=None, ):
+
+def get_prompt(
+    state=None,
+):
     if state == "set_key":
         return "Please enter a 3-letter key > "
     if state == "add_plug":
@@ -17,6 +20,7 @@ def get_prompt(state=None, ):
 def set_key(key: str, enigma: Enigma, output_command: Callable[[str], None]):
     enigma.set_key(key)
     output_command(f'Set key "{key}".')
+
 
 def add_plug(plug: str, enigma: Enigma, output_command: Callable[[str], None]):
     existing_letters = []
@@ -38,17 +42,21 @@ def list_plugs(enigma: Enigma):
     plug_string = ", ".join(enigma.plugs)
     return f"Current plug state: [{plug_string}]"
 
+
 def clear_plugs(enigma: Enigma):
     enigma.plugs.clear()
     return f"Current plug state: {enigma.plugs}"
+
 
 def encrypt_message(enigma: Enigma, message: str):
     encrypted_message = enigma.encode(message)
     return f"Encrypted message: {encrypted_message}"
 
+
 def decrypt_message(enigma: Enigma, message: str):
     decrypted_message = enigma.decode(message)
     return f"Decrypted message: {decrypted_message}"
+
 
 def get_command(
     state: str | None,
@@ -60,6 +68,8 @@ def get_command(
         raise TypeError("Input should be a string.")
     result = result.upper()
 
+    if result == "H":
+        return "help"
     if result == "Q":
         return "quitting"
     if result == "K" and state is None:
@@ -86,11 +96,7 @@ def get_command(
     return "invalid_command"
 
 
-def handle_state(
-    state: str,
-    enigma: Enigma,
-    output_command_callback: Callable[[str], None]
-):
+def handle_state(state: str, enigma: Enigma, output_command_callback: Callable[[str], None]):
     if state == "invalid_command":
         output_command_callback("Invalid command.")
         return None
@@ -112,16 +118,26 @@ def handle_state(
     if "apply_decrypt" in state:
         output_command_callback(decrypt_message(enigma, state[14:]))
         return None
+    if state == "help":
+        help_message = """You may select one of the following options:
+    - h - This help message
+    - e - Encrypt a message using the current key
+    - d - Decrypt a message. The message should be prefaced with a 3 letter key.
+    - k - Change the current key
+    - l - List the current plug settings
+    - r - remove the current plug settings
+    - p - Add a plug pair"""
+        output_command_callback(help_message)
+        return None
     return state
 
 
 def run(
     enigma: Enigma,
     input_command_callback: Callable[[str], str | None],
-    output_command_callback: Callable[[str], None]
+    output_command_callback: Callable[[str], None],
 ):
     state = None
     while state != "quitting":
         state = get_command(state, enigma, input_command_callback)
         state = handle_state(state, enigma, output_command_callback)
-
