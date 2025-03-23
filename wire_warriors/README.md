@@ -1,4 +1,4 @@
-## Group 2. The Wire Warriors
+## The Wire Warriors
 
 An Enigma machine consists of the following parts:
 - A keyboard with a light inside each key that causes that key to light up
