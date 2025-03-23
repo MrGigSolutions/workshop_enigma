@@ -1,0 +1,4 @@
+[flake8]
+max-line-length: 120
+# We ignore E203 because it causes invalid errors when using slices
+extend-ignore: E203
