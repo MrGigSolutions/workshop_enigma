@@ -1,0 +1,7 @@
+[project]
+name = "enigma"
+version = "0.1.0"
+description = "Mob programming workshop - Build an Enigma machine"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
