@@ -32,6 +32,7 @@ For this session, we'll switch roles every 5 minutes (normally it's longer). The
 - Activate the environment with `source .venv/bin/activate` (Linux) or `.\.venv\Scripts\activate` (Windows)
 - Install copier: `pip install copier`
 - Copy this template with `copier copy git+https://www.github.com/MrGigSolutions/workshop_enigma .`
-- Follow the template instructions.
+  On Windows, if you run in a bash shell, you may need to call
+ `winpty copier copy git+https://www.github.com/MrGigSolutions/workshop_enigma .`- Follow the template instructions.
 - Your team will have its own folder in which to play. Try to only work in your own folder,
   as the other teams will be working in theirs.
