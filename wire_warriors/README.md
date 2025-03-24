@@ -32,10 +32,10 @@ The reflector does the following:
 Plugs do the following:
 - It symmetrically replaces an input letter by the letter it is connected to.
   E.g. if the letter `A` is plugged to the letter `P`, if a user types an A, it
-  should be replaced by a `P` and if the user types a `P` it should be replaced
-  by an an `A`. The plugged letter is then fed into the rest of the encoder
-- After the encoder returns a letter, the same should occur: if an `A` comes
-  back from the encoder, it should be transformed to a `P`, and vice versa
+  should be replaced by a `P` before going into the rest of the encoder,
+  and after a signal has come through the encoder, if the result is a `P`,
+  it should be output the letter `A`. The plug board is the first thing the 
+  unencoded signal passes through, and the last thing the encoded passes through.
 - It's possible to leave some letters unplugged. In this case the plug does
   nothing, and the letter stays as it is.
 
