@@ -17,9 +17,9 @@ There are 3 roles in mob programming:
 - The navigator: listens to the mobs discussions, and communicates instructions to the driver. The navigator is the decision maker on where to go with the code.
 - The driver: the driver converts the navigator's instructions into code. The driver shows NO initiative! He may only convert the instructions into code
 
-For this session, we'll switch roles every 5 minutes (normally it's longer). The navigator becomes the driver. The driver becomes the mob.
+For this session, we'll switch roles every 4 minutes (normally it's longer). The navigator becomes the driver. The driver becomes the mob.
 - On switching, immediately drop what you are doing, even in the middle of writing something. Do not finish, the next driver will take over
-- 5 minutes start as soon as everyone has assumed their positions
+- 4 minutes start as soon as everyone has assumed their positions
 - It may be an idea to assign 1 of your mob members to have a quick check with the other
   teams now and then, especially if you have mutual dependencies!
 

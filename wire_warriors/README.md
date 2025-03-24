@@ -86,22 +86,15 @@ Your tasks are the following:
    Also adjust the `decrypt()` function to first call the `set_key(...)`
    function with the key consisting of the first 3 letters of the encrypted
    message.
-10. Add a `plugs` parameter, a list of 2-letter strings. Implement a `add_plug`
-    function. This adds a plug to the set of plugs, and needs to perform some
-    validation
-	- the plugs may contain up to 13 pairs of letters
-	- plug pairs on may only contain letters, no numbers or other characters
-	- a letter may only occur once in a plug pair, either as the first or second letter of the pair
-11. Implement a `clear_plugs` function that removes all plugs.
-12. Create a `_plugged(letter)` that returns the plugged letter if one is
-    available, and otherwise returns the same letter that was sent.
-13. Adjust the encode function so that it calls the `_plugged` function before
-    sending the signal into the first rotor, and to called the `_plugged`
-    function again after signal comes out of the last rotor.
-14. Optional: if the Revolutionaries have implemented notches (their step 7),
+10. Optional: implement the plug board. You should support at least the following functions:
+    `_plugged(letter: str, direction: bool)`, `add_plug(pair: str)`, and
+    `clear_plugs()`.
+    Hint: the plugs are actually a special case of one of the components
+    you have already implemented. Perhaps you can reuse some of the code?
+11. Optional: if the Revolutionaries have implemented notches (their step 7),
     the rotor will return a boolen value from its `rotate()` function. If this
     bool is true for the first rotor, also cause the second rotor to rotate.
     If that one also returns true, also cause the third rotator to rotate.
-15. Optional: implement the `set_rotors(x, y, z)`, which calls `set_rotor(...)`
+12. Optional: implement the `set_rotors(x, y, z)`, which calls `set_rotor(...)`
     on each of the rotors which is implemented by the Revolutionaries in their
     step 8.

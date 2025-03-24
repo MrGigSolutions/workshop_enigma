@@ -46,10 +46,8 @@ You will be implementing the Enigma machine's rotor. The rotor will work as foll
 
 To implement the rotor, you must do the following:
 1. Create a `Rotor` object. The `Rotor` object should be initialised with a
-   **rotor string** and a **connection string**.
-2. Implement a validation on the initialisation function:
-	- There should be 26 unique alphabetic letters in the rotor string,
-	- There should be 26 unique alphabetic letters in the connection string
+   **rotor string** and a **connection string**. Assume they
+   are always correctly entered as strings of 26 unique alphabetic characters.
 3. Implement getting the current position of the rotor by its visible letter:
    `get_position() -> str`
 4. Implement the `encode(message: str) -> str` function: encodes a single 
@@ -91,7 +89,10 @@ To implement the rotor, you must do the following:
    next rotor should rotate, and False otherwise. Hint: it may be
    easier to store and manipulate the rotor strings without the notches, and keep
    track of the notches separately.
-8. Optional: enter rotor setting. Pass a 1-based integer that sets the position of the
+8. Optional: Implement a validation on the initialisation function:
+	- There should be 26 unique alphabetic letters in the rotor string,
+	- There should be 26 unique alphabetic letters in the connection string
+9. Optional: enter rotor setting. Pass a 1-based integer that sets the position of the
    rotor string over the rotor as was explained above in the bullet point about the
    rotor setting. Naturally changing the rotor setting without rotating the rotor
    should cause a different letter indicating the current position of the rotor to be
