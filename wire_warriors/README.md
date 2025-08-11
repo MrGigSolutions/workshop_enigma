@@ -2,7 +2,7 @@
 
 You will be building the body and internal structure of the ENIGMA machine.
 
->[!WARNING]
+>[!IMPORTANT]
 >You will depend heavily on the progress of the Revolutionaries. Make sure to communicate with them on their progress of the implementation of the Rotor initializer, the `encode` method, `rotate` method, `get_position` method, and `set_position` method.
 >
 >If they are there, the Keyboard Clan will depend on your implementations of the `encrypt`, `decrypt` and `set_key` methods, so make sure to communicate your progress clearly. They may need some of these methods before you can finish them, so provide reasonable defaults and stubs!

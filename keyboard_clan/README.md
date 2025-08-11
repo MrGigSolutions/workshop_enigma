@@ -2,7 +2,7 @@
 
 You will be responsible for the machine's front end and UI.
 
->[!WARNING]
+>[!IMPORTANT]
 >You will depend heavily on the progress of the Wire Warriors. Make sure to communicate with them on their progress of the implementation of the Enigma initializer, the `get_key` method, `encrypt` method, and `set_key` method. You may need these methods before they are ready to deliver them, so coordinate carefully.
 ### Main tasks
 

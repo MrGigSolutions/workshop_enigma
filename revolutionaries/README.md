@@ -2,9 +2,12 @@
 
 You will be implementing the rotor. The rotor is an essential component of the ENIGMA machine.
 
-> [!WARNING]
-You are not dependent on the other groups, but the other groups will be very dependent on you! Make sure to align your progress and output with the other groups. Especially be aware that the Wire Warriors need (in this order) your implementation of instantiating new `Rotor` objects, and the `encode()`, and `rotate()`, `get_position()` and `set_position()` functions, so try to implement stubs with a good signature as soon as possible to accommodate them.
-Hint: the ENIGMA machine will work if the `rotate()` and `set_position()` functions do nothing. If you run out of time, leave it a stub, as you do not need to implement this yet. It will make your code much easier for Alan Turing to crack, but then again he had a few years to do it, not a few hours, and he invented the computer specifically to do it...
+> [!IMPORTANT]
+> You are not dependent on the other groups, but the other groups will be very dependent on you! Make sure to align your progress and output with the other groups. Especially be aware that the Wire Warriors need (in this order) your implementation of instantiating new `Rotor` objects, and the `encode()`, and `rotate()`, `get_position()` and `set_position()` functions, so try to implement stubs with a good signature as soon as possible to accommodate them.
+
+> [!TIP]
+> The ENIGMA machine will work if the `rotate()` and `set_position()` functions do nothing. If you run out of time, leave it a stub, as you do not need to implement this yet. It will make your code much easier for Alan Turing to crack, but then again he had a few years to do it, not a few hours, and he invented the computer specifically to do it...
+
 ### Main tasks
 
 To implement the rotor, you must do the following:
@@ -12,7 +15,7 @@ To implement the rotor, you must do the following:
 1. Create a `Rotor` object. The `Rotor` object should be initialised with a **wiring string** of 26 unique letters A-Z.
 
 > [!NOTE]
->  Encoding letters to other letters can be represented as follows: `ABCDEF->BDFACE`. This means letter `A` encodes to `B`, `B` to `D`, etc. A shorthand notation for this uses only a single string: `BDFACE`. The ***index*** of each letter in this string corresponds to the index of the letter in the alphabet for the input. The ***value*** of each letter corresponds to what that letter **encodes** to. We call this string the **wiring string**, as it represents the internal wiring of the rotor.
+> Encoding letters to other letters can be represented as follows: `ABCDEF->BDFACE`. This means letter `A` encodes to `B`, `B` to `D`, etc. A shorthand notation for this uses only a single string: `BDFACE`. The ***index*** of each letter in this string corresponds to the index of the letter in the alphabet for the input. The ***value*** of each letter corresponds to what that letter **encodes** to. We call this string the **wiring string**, as it represents the internal wiring of the rotor.
  
 2. Implement the `encode(input: str, direction: str) -> str` function: this encodes a single character based on the current rotor settings. The direction of the encoding should also be supported (`in` or `out`). We use the wiring string to encode characters.
 
@@ -45,9 +48,9 @@ To implement the rotor, you must do the following:
 > [!NOTE]
 > Each typically rotor has 1 or 2 notches. When a rotor passes a notch by being rotated, it will trigger the next rotor to also rotate. A good way to indicate the notch is to use an apostrophe in the wiring string, e.g. `ABC'DEF`. It's up to you to determine whether the apostrophe refers to the letter before it or after it. You may of course also use other methods to remember where the notches are.
 
-7. Encrypt the positions string. Implement this by storing a string of 26 unique letters, called the **rotor string**. Implement setting this by creating a `set_rotor_string(rotor_string: str)` function. Adjust `set_position()` to look up the input letter in this string, and set the position based on that. Also adjust the `get_position`() function to correctly return the letter from the rotor string that represents the current position of the rotor.
+7. Encrypt the positions string. Implement this by storing a string of 26 unique letters, called the **rotor string**. Implement setting this by creating a adding a second string to the Rotor initialiser. Adjust `set_position()` to look up the input letter in this string, and set the position based on that. Also adjust the `get_position`() function to correctly return the letter from the rotor string that represents the current position of the rotor.
 
 > [!NOTE]
-> In real ENIGMA, setting the positions of the rotors to A-Z without encryption would have been too easy to crack. They had different rotors, and these rotors would be overlaid with a set of letters. In the code book, the correct rotor and overlay settings would be stored.
+> In real ENIGMA, setting the positions of the rotors to A-Z without encryption would have been too easy to crack. They had different rotor types, each overlaid with a set of letters that could be rotated over the rotor. In the code book, the correct rotor and overlay settings would be stored.
 > 
 > **Example**: given a rotor string of `BADC`, and a wiring string of `CBDA`, `get_position()` for the initial position of the rotor should return `B` (the first letter in the rotor string).  Setting the rotor to position `A` (the second letter in the rotor string), would cause us to rotate the rotor once from its initial setting, resulting in an encryption string of `BDCA`
