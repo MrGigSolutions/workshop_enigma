@@ -1,7 +1,14 @@
 # Workshop mob programming
 Create an Enigma machine
 
+### Announcement
+It's the early 20th century. You and your team are in a unique situation. An English spy has convinced the German Army that they have plans for an unbreakable code machine. Only problem is: the English don't have those plans. Your team has been asked to do the almost impossible: design an encryption machine that is *almost* unbreakable but will convince the Germans they have a fool proof system. You will have opportunity to design the world's most famous encryption apparatus - ENIGMA - with all the modern tools that are available today. Can you and your fellow teams do in 2 hours what the Germans did in 20 years?
+
+For this assignment, you will be split up in multiple teams that have to work together to come up with a solution. Each team will use mob programming to come up with a solution for their parts. Extra challenges come from the need for coordination.
+
 ## About mob programming
+Mob Programming, also known as Team or Ensemble Programming, is an innovative practice where a group of software engineers works collaboratively on the same task, at the same time, in the same space, and on a single computer. This approach fosters teamwork, facilitates knowledge sharing, and produces high-quality code while promoting a deeper understanding of the project.
+
 ### Benefits:
 (https://www.techtarget.com/searchsoftwarequality/definition/mob-programming)
 - **Enables continuous learning** - Everyone has total access to the shared knowledge of team members. Teams can quickly solve problems that come up, and team members [continuously learn](https://www.techtarget.com/whatis/definition/continuous-learning) more about the development process.

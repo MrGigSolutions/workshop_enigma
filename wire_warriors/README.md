@@ -1,100 +1,62 @@
 ## The Wire Warriors
 
-An Enigma machine consists of the following parts:
-- A keyboard with a light inside each key that causes that key to light up
-  when it is the encoded version of the currently pressed key. E.g. pressing
-  the "A" key could cause the "M" key to light up, signalling that that is the
-  encoded letter of the letter typed by the operator.
-- A plug board
-- 3 rotors
-- A reflector
+You will be building the body and internal structure of the ENIGMA machine.
 
-A keyboard press causes an electrical signal to go through the set of plugs,
-then into rotor 1, 2, then 3, then through the reflector, then back through
-rotor 3, then 2, then 1, then back through the plug board, and finally back to
-the keyboard to highlight the encoded letter.
+>[!WARNING] **Dependencies**
+>You will depend heavily on the progress of the Revolutionaries. Make sure to communicate with them on their progress of the implementation of the Rotor initializer, the `encode` method, `rotate` method, `get_position` method, and `set_position` method.
+>
+>If they are there, the Keyboard Clan will depend on your implementations of the `encrypt`, `decrypt` and `set_key` methods, so make sure to communicate your progress clearly. They may need some of these methods before you can finish them, so provide reasonable defaults and stubs!
 
-Your job is to build the following parts of the machine:
-- The reflector
-- The internal wiring of the machine. You will connect all the different parts
-  of the machine together.
-- The plug board
+### Main tasks
 
-The reflector does the following:
-- For every letter in the alphabet, return another letter, so that there are 13
-  pairs. Every letter must be connected to another letter and every letter may
-  occur only once.
-- When a letter goes into the reflector, its connected letter comes out, and
-  when the connected letter goes into the reflector, the original letter comes
-  out. e.g. if the reflector contains pairs `[AB, ...]`, `reflect("B")` should
-  return `A`, and `reflect("A")` should return `B`
+1. Create an `Enigma` object. It should be initialised with a `reflector` variable, consisting of an array of 13 pairs of unique letters. Every letter in the alphabet occurs exactly once in the reflector array.
 
-Plugs do the following:
-- It symmetrically replaces an input letter by the letter it is connected to.
-  E.g. if the letter `A` is plugged to the letter `P`, if a user types an A, it
-  should be replaced by a `P` before going into the rest of the encoder,
-  and after a signal has come through the encoder, if the result is a `P`,
-  it should be output the letter `A`. The plug board is the first thing the 
-  unencoded signal passes through, and the last thing the encoded passes through.
-- It's possible to leave some letters unplugged. In this case the plug does
-  nothing, and the letter stays as it is.
+2. Implement a `_reflect(input: str) -> str` function. This function takes an input character, and returns the other character in the pair in the reflection array.
 
-Your tasks are the following:
-1. Create an `Enigma` object. For now the object will hold one variable:
-   `reflector` (choose a variable type that can represent what the reflector
-   does).
-2. Implement the Enigma object's initialiser, so that it makes the following
-   validations:
-	- the reflector must contain 13 pairs of letters
-	- there are only letters in the reflector pairs, no numbers or other
-      characters
-	- every letter in the alphabet occurs exactly once in the reflector, either
-      as the first or second letter of a pair
-3. Create a `get_key()` function. For now just let it return 3 letters. You can
-   get the key using the Revolutionaries' `get_position()` function on each
-   rotor. `get_position()` return a single letter representing the rotor's
-   current position. The key is the combination of the position of all the
-   rotors.
-4. Create a function called `encrypt(message)` that does the following:
-	1. Store machine's key setting.
-	2. Encode each letter in the message through the 3 rotors in the "in"
-       direction (the output of the first rotor becomes the input for the
-       second rotor, etc), then pass the result through the `_reflect` function,
-       then encode the message through the 3 rotors in reverse order in the
-       "out" direction.
-	3. Prepend the stored key in front of the encrypted message so that it
-       becomes `[KEY][ENCODED MESSAGE]`
-	4. Return the message
-5. Create a `_reflect(letter)` function on `Enigma` that looks for a letter in
-   `reflector` pairs, returns the other letter in the pair.
-6. Adjust the `Enigma` object to be initialised with 3 `Rotor` objects. Check
-   the initialiser of the rotor to ensure you initialise it correctly. This
-   object should hold 3 `Rotor` objects (to be developed by the
-   Revolutionaries).
-7. Create a `decrypt(message)` function that does the following:
-	1. Take the 3 letter key and remove it from the front of the message. We
-       will use this later.
-	2. Decrypt each character using exactly the same procedure as above. As you
-       can see it's symmetrical, so you can use the same function!
+> [!INFO] **Reflector**
+> A reflector is a symmetrical static encoder. For example, if it consists of the array `["AB", "CD", ...]`, the reflector would reflect `A` as `B`, and `B` as `A`.
+
+3. Adjust the `Enigma` object to be initialised with 3 `Rotor` objects, implemented by the Revolutionaries. Check the initialiser of the `Rotor` to ensure you initialise it correctly.
+
+> [!WARNING] **Rotor**
+> The Rotor initializer may change as the Revolutionaries work, so make sure to find this out on time and initialize your Enigma object correctly.
+
+4. Create a `get_key()` function. You can get the key by calling the `get_position()` function on each rotor. `get_position()` returns a single letter representing the rotor's current position. The key is the combination of the position of all the rotors.
+
+5. Create a function called `encrypt(message: str)` that does the following:
+	1. Call `get_key()` and save it for output.
+	2. Encode each letter in the message through the 3 rotors in the "in" direction (the output of the first rotor becomes the input for the second rotor, etc), then pass the result through the `_reflect` function, then encode the message through the 3 rotors *in reverse order* in the "out" direction.
+	3. Prepend the saved key in front of the encrypted message so that it becomes `[KEY][ENCODED MESSAGE]`
+	4. Return the message 
+
+> [!INFO] **Encryption**
+> The Rotor has an `encode(input: str, direction: str) -> str`, which encodes a single character in the provided direction. This should be implemented by the Revolutionaries. Encryption is a symmetrical process! Encrypting the letter `A` to `F`, for example, means that `F` also encrypts to `A`.
+
+6. Create a `decrypt(message: str)` function that does the following:
+	1. Take the 3 letter key and remove it from the front of the message. We will use this later.
+	2. Decrypt each character using exactly the same procedure as above. As you can see it's symmetrical, so you can use the same function!
 	3. Return the decrypted message
-8. Adjust the `encode()` function so that it rotates the first rotor after every
-   encoded letter using the rotors `rotate()` function
-9. Create a function called `set_key("XYZ")`. This function sets the rotor
-   position for the 3 rotors in the Enigma. You can use the function
-   `set_position("X")` on each rotor to set its position to that letter. This
-   `set_position("X")` function will be implemented by the Revolutionaries.
-   Also adjust the `decrypt()` function to first call the `set_key(...)`
-   function with the key consisting of the first 3 letters of the encrypted
-   message.
-10. Optional: implement the plug board. You should support at least the following functions:
-    `_plugged(letter: str, direction: bool)`, `add_plug(pair: str)`, and
-    `clear_plugs()`.
-    Hint: the plugs are actually a special case of one of the components
-    you have already implemented. Perhaps you can reuse some of the code?
-11. Optional: if the Revolutionaries have implemented notches (their step 7),
-    the rotor will return a boolen value from its `rotate()` function. If this
-    bool is true for the first rotor, also cause the second rotor to rotate.
-    If that one also returns true, also cause the third rotator to rotate.
-12. Optional: implement the `set_rotors(x, y, z)`, which calls `set_rotor(...)`
-    on each of the rotors which is implemented by the Revolutionaries in their
-    step 8.
+
+7. Adjust the `encrypt()` function so that it rotates the first rotor *after every* encoded letter using the rotor's `rotate()` function. If the `rotate()` function of the first rotor returns True, the second rotor should also rotate. If the encode function of the second one returns True, the third one should rotate.
+
+8. Create a function called `set_key(key: str)`. This function sets the rotor position for the 3 rotors in the Enigma. You can use the function `set_position("X")` on each rotor to set its position to that letter. This `set_position("X")` function will be implemented by the Revolutionaries.
+
+9. Adjust the `decrypt()` function to first call the `set_key(...)` function with the key consisting of the first 3 letters of the encrypted message
+### Bonus tasks
+
+7. Implement a `add_plug(plug: str) -> bool` function. This adds a plug to the set of plugs, and needs to perform some validation:
+	- the plugs may contain up to 13 pairs of letters
+	- plug pairs on may only contain letters, no numbers or other characters
+	- a letter may only occur once in a plug pair, either as the first or second letter of the pair
+	If all of the above conditions are met, return True, otherwise False.
+	
+> [!INFO] **Plugs**
+> A plug is a connection that performs optional static encoding of letters before sending the signal through the machine.
+> 
+> **Example** if the letter `A` is plugged to `E`, and the user inputs an `A`, this then is first encoded to an `E`, then sent through the machine for encryption. Similarly, if the the user types an `E`, it's first encoded to an `A`. If a user typed an `F`, and it comes out of encryption as an `A` the plug would then also encode that to an `E` as the final output.
+
+8. Implement a `clear_plugs()` function that removes all plugs.
+
+9. Create a `_plugged(letter: str)->str` that returns the plugged letter if one is available, and otherwise returns the same letter that was sent.
+
+10. Adjust the `encrypt` function so that it calls the `_plugged` function before sending the signal into the first rotor, and again after signal comes out of the last rotor
