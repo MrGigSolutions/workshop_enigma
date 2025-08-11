@@ -8,14 +8,14 @@ You will be responsible for the machine's front end and UI.
 
 1. Write a command prompt utility. The user should be given a welcome message, and allow the user to type the letter `Q` to quit.
 
-> [!INFO]
+> [!NOTE]
 > It's not very easy to test command prompts. You could consider creating an object that has methods for each command. A good way to do this is to pass the command and the current state into such a method, have the command do something to the state, and then return the state.
 
 2. Implement that if a user gives a wrong command, the application shows an Invalid command message, and then returns to the initial prompt.
 
 3. Instantiate an `Enigma` object in the utility. Follow the correct init method provided by the Wire Warriors.
 
-> [!INFO]
+> [!NOTE]
 > You may hardcode any initialisation values. It's beyond the scope of this UI to ask the user for input. See it as a machine setup - this was handled by an operator and had nothing to do with UI.
 
 4. Add an `E` option (for encrypt). The user should be able to follow this command with a message. Only letters `A-Z` should be allowed. On success, the prompt should return the "encrypted" message: `[KEY][MESSAGE]` (without the brackets). E.g. key `XYZ`, message `HELLO` could return `XYZXDRQD. You may get the encrypted message by calling the `encrypt(message)` method on the `Enigma` object.
