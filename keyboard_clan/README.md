@@ -2,20 +2,20 @@
 
 You will be responsible for the machine's front end and UI.
 
->[!WARNING] **Dependencies**
+>[!WARNING]
 >You will depend heavily on the progress of the Wire Warriors. Make sure to communicate with them on their progress of the implementation of the Enigma initializer, the `get_key` method, `encrypt` method, and `set_key` method. You may need these methods before they are ready to deliver them, so coordinate carefully.
 ### Main tasks
 
 1. Write a command prompt utility. The user should be given a welcome message, and allow the user to type the letter `Q` to quit.
 
-> [!INFO] **Testing command prompt utilities**
+> [!INFO]
 > It's not very easy to test command prompts. You could consider creating an object that has methods for each command. A good way to do this is to pass the command and the current state into such a method, have the command do something to the state, and then return the state.
 
 2. Implement that if a user gives a wrong command, the application shows an Invalid command message, and then returns to the initial prompt.
 
 3. Instantiate an `Enigma` object in the utility. Follow the correct init method provided by the Wire Warriors.
 
-> [!INFO] **Init values**
+> [!INFO]
 > You may hardcode any initialisation values. It's beyond the scope of this UI to ask the user for input. See it as a machine setup - this was handled by an operator and had nothing to do with UI.
 
 4. Add an `E` option (for encrypt). The user should be able to follow this command with a message. Only letters `A-Z` should be allowed. On success, the prompt should return the "encrypted" message: `[KEY][MESSAGE]` (without the brackets). E.g. key `XYZ`, message `HELLO` could return `XYZXDRQD. You may get the encrypted message by calling the `encrypt(message)` method on the `Enigma` object.
@@ -24,7 +24,7 @@ You will be responsible for the machine's front end and UI.
 
 6. Add a K option (for "set key"). This should be followed by a prompt for the user to type in a 3 letter key. Only letters A-Z are allowed, and the key must be exactly 3 letters. You can call the `set_key(key: str)` function on the `Enigma` object for this.
 
-> [!WARNING] **State**
+> [!WARNING]
 > You must not store any internal state of the ENIGMA machine. This is handled by the Wire Warriors. You may, however, store UI state, for example to remember that a user is currently encrypting a message, or is setting a key.
 
 ### Bonus tasks

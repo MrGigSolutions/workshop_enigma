@@ -2,7 +2,7 @@
 
 You will be building the body and internal structure of the ENIGMA machine.
 
->[!WARNING] **Dependencies**
+>[!WARNING]
 >You will depend heavily on the progress of the Revolutionaries. Make sure to communicate with them on their progress of the implementation of the Rotor initializer, the `encode` method, `rotate` method, `get_position` method, and `set_position` method.
 >
 >If they are there, the Keyboard Clan will depend on your implementations of the `encrypt`, `decrypt` and `set_key` methods, so make sure to communicate your progress clearly. They may need some of these methods before you can finish them, so provide reasonable defaults and stubs!
@@ -13,12 +13,12 @@ You will be building the body and internal structure of the ENIGMA machine.
 
 2. Implement a `_reflect(input: str) -> str` function. This function takes an input character, and returns the other character in the pair in the reflection array.
 
-> [!INFO] **Reflector**
+> [!INFO]
 > A reflector is a symmetrical static encoder. For example, if it consists of the array `["AB", "CD", ...]`, the reflector would reflect `A` as `B`, and `B` as `A`.
 
 3. Adjust the `Enigma` object to be initialised with 3 `Rotor` objects, implemented by the Revolutionaries. Check the initialiser of the `Rotor` to ensure you initialise it correctly.
 
-> [!WARNING] **Rotor**
+> [!WARNING]
 > The Rotor initializer may change as the Revolutionaries work, so make sure to find this out on time and initialize your Enigma object correctly.
 
 4. Create a `get_key()` function. You can get the key by calling the `get_position()` function on each rotor. `get_position()` returns a single letter representing the rotor's current position. The key is the combination of the position of all the rotors.
@@ -29,7 +29,7 @@ You will be building the body and internal structure of the ENIGMA machine.
 	3. Prepend the saved key in front of the encrypted message so that it becomes `[KEY][ENCODED MESSAGE]`
 	4. Return the message 
 
-> [!INFO] **Encryption**
+> [!INFO]
 > The Rotor has an `encode(input: str, direction: str) -> str`, which encodes a single character in the provided direction. This should be implemented by the Revolutionaries. Encryption is a symmetrical process! Encrypting the letter `A` to `F`, for example, means that `F` also encrypts to `A`.
 
 6. Create a `decrypt(message: str)` function that does the following:
@@ -50,7 +50,7 @@ You will be building the body and internal structure of the ENIGMA machine.
 	- a letter may only occur once in a plug pair, either as the first or second letter of the pair
 	If all of the above conditions are met, return True, otherwise False.
 	
-> [!INFO] **Plugs**
+> [!INFO]
 > A plug is a connection that performs optional static encoding of letters before sending the signal through the machine.
 > 
 > **Example** if the letter `A` is plugged to `E`, and the user inputs an `A`, this then is first encoded to an `E`, then sent through the machine for encryption. Similarly, if the the user types an `E`, it's first encoded to an `A`. If a user typed an `F`, and it comes out of encryption as an `A` the plug would then also encode that to an `E` as the final output.
