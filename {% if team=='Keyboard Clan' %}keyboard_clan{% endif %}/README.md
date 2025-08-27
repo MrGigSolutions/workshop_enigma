@@ -2,11 +2,12 @@
 
 You will be responsible for the machine's front end and UI.
 
->[!IMPORTANT] **Dependencies**
->You will depend heavily on the progress of the Wire Warriors. Make sure to communicate with them on their progress of the implementation  the `Key` endpoints, `Encrypt` endpoint and `Decrypt` endpoint. You may need these endpoints before they are ready to deliver them, so coordinate carefully.
+> [!IMPORTANT] **Dependencies**
+> You will depend heavily on the progress of the Wire Warriors. Make sure to communicate with them on their progress of the implementation  the `Key` endpoints, `Encrypt` endpoint and `Decrypt` endpoint. You may need these endpoints before they are ready to deliver them, so coordinate carefully.
 
 > [!IMPORTANT] **State**
 > You must not store any internal state of the ENIGMA machine. This is handled by the Wire Warriors. You may, however, store UI state, for example to remember that a user is currently encrypting a message, or is setting a key.
+
 ### Main tasks
 
 1. Create a simple web page. The web page should for now contain a header with `ENIGMA` showing up.

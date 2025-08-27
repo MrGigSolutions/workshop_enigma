@@ -13,8 +13,8 @@ To implement the rotor, you must do the following:
 
 1. Create an API that supports submitting data using JSON objects. We'll add endpoints in the next steps. Don't worry about things like authentication, KISS.
 
->[!IMPORTANT]
->The API should be accessible by other groups, so make sure you are listening to IPs other than own host, and that the firewall allows access to your API. You should probably not use a work laptop for this exercise.
+> [!IMPORTANT]
+> The API should be accessible by other groups, so make sure you are listening to IPs other than own host, and that the firewall allows access to your API. You should probably not use a work laptop for this exercise.
 
 > [!NOTE] **Init values**
 > You may hardcode any initialisation values, and will typically not be required to allow the user to change rotor settings other than the position.
@@ -22,7 +22,7 @@ To implement the rotor, you must do the following:
 2. Create a `Rotor` object. The `Rotor` object should be initialised with a **wiring string** of 26 unique letters A-Z.
 
 > [!NOTE] **Wiring string**
->  Encoding letters to other letters can be represented as follows: `ABCDEF<->BDFACE`. This means letter `A` encodes to `B`, `B` to `D`, etc. A shorthand notation for this uses only a single string: `BDFACE`. The ***index*** of each letter in this string corresponds to the index of the letter in the alphabet for the input. The ***value*** of each letter corresponds to what that letter **encodes** to. We call this string the **wiring string**, as it represents the internal wiring of the rotor.
+> Encoding letters to other letters can be represented as follows: `ABCDEF<->BDFACE`. This means letter `A` encodes to `B`, `B` to `D`, etc. A shorthand notation for this uses only a single string: `BDFACE`. The ***index*** of each letter in this string corresponds to the index of the letter in the alphabet for the input. The ***value*** of each letter corresponds to what that letter **encodes** to. We call this string the **wiring string**, as it represents the internal wiring of the rotor.
  
 3. Instantiate 3 rotors for use within the API.
 
@@ -31,8 +31,8 @@ To implement the rotor, you must do the following:
 
 4. Implement a `/rotor/position` GET endpoint. This takes a JSON object: `{"rotor_index": int}` and returns JSON object: `{ "rotor_index": int, "letter": str}`. The letter represents the number of rotation steps that have been made. Initialize each rotor at position `A`.
 
->[!NOTE] Positions
->**Example** The rotor initialises at position `A`. After rotating once (rotation will be introduced in a later step), the position becomes `B`, then `C`, etc. until eventually looping back to `A`.
+> [!NOTE] Positions
+> **Example** The rotor initialises at position `A`. After rotating once (rotation will be introduced in a later step), the position becomes `B`, then `C`, etc. until eventually looping back to `A`.
 
 5. Implement the `/rotor/encode` GET endpoint. It takes the following JSON object: `{ "rotor": int, "letter": str, "direction": str }`. This endpoint should encode a single character using the wiring string. It should return a JSON object with the format `{"encoded": str}` The direction of the encoding should also be supported (`in` or `out`). Use the wiring string to encode characters.
 

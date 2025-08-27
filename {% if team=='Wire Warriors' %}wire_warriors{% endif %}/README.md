@@ -2,17 +2,17 @@
 
 You will be building the body and internal structure of the ENIGMA machine.
 
->[!IMPORTANT] **Dependencies**
->You will depend heavily on the progress of the Revolutionaries. Make sure to communicate with them on their progress of the implementation the `Encode` endpoint, `Rotate` endpoint and `Position` endpoints.
->
->If they are there, the Keyboard Clan will depend on your implementations of the `Encrypt`, `Decrypt` and `Key` endpoints, so make sure to communicate your progress clearly. They may need some of these endpoints before you can finish them, so provide reasonable defaults and endpoint skeletons!
+> [!IMPORTANT] **Dependencies**
+> You will depend heavily on the progress of the Revolutionaries. Make sure to communicate with them on their progress of the implementation the `Encode` endpoint, `Rotate` endpoint and `Position` endpoints.
+> 
+> If they are there, the Keyboard Clan will depend on your implementations of the `Encrypt`, `Decrypt` and `Key` endpoints, so make sure to communicate your progress clearly. They may need some of these endpoints before you can finish them, so provide reasonable defaults and endpoint skeletons!
 
 ### Main tasks
 
 1. Create an API. Endpoints for it will be developed in later instructions.
 
->[!IMPORTANT]
->The API should be accessible by other groups, so make sure you are listening to IPs other than own host, and that the firewall allows access to your API. You should probably not use a work laptop for this exercise.
+> [!IMPORTANT]
+> The API should be accessible by other groups, so make sure you are listening to IPs other than own host, and that the firewall allows access to your API. You should probably not use a work laptop for this exercise.
 
 > [!NOTE] **Init values**
 > You may hardcode any initialisation values, and will typically not be required to allow the user to change machine settings other than the key.
@@ -28,8 +28,8 @@ You will be building the body and internal structure of the ENIGMA machine.
 
 5. Create a `Key` GET endpoint. You can get the key by calling the `Position` GET endpoint on the rotor. `Position` returns a single letter representing the rotor's current position. The key is the combination of the position of all the rotors.
 
->[!NOTE] Other teams' endpoints
->Discuss with the Revolutionaries what their implementation of the `Position` GET endpoint is, so you know what to expect.
+> [!NOTE] Other teams' endpoints
+> Discuss with the Revolutionaries what their implementation of the `Position` GET endpoint is, so you know what to expect.
 
 6. Create a POST endpoint called `Encrypt`. It should take the following JSON input: `{"message": str}` and should do the following:
 	1. Retrieve the current key and save it for output
