@@ -1,8 +1,9 @@
 # Questions
-number_of_teams:
-    type: int
-    help: "How many teams will participate in the workshop?"
-    default: 3
+team:
+    type: string
+    help: "What team are you?"
+    default: Revolutionaries
     choices:
-      - 2
-      - 3
+      - Revolutionaries
+      - Wire Warriors
+      - Keyboard Clan
