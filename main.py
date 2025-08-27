@@ -1,6 +1,11 @@
-# from keyboard_clan import keyboard
-# from wire_warriors.machine import Enigma
-#
-# if __name__ == "__main__":
-#     machine = Enigma()
-#     keyboard.run(machine, input, print)
+from typing import Union
+
+from fastapi import FastAPI
+
+from revolutionaries import rotor
+from wire_warriors import machine
+
+app = FastAPI()
+
+app.include_router(rotor.router)
+app.include_router(machine.router)
