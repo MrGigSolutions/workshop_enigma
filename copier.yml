@@ -1,6 +1,6 @@
 # Questions
 team:
-    type: string
+    type: choice
     help: "What team are you?"
     default: Revolutionaries
     choices:
