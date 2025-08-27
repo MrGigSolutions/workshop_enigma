@@ -2,20 +2,20 @@
 
 You will be responsible for the machine's front end and UI.
 
-> [!IMPORTANT] **Dependencies**
+> [!IMPORTANT]
 > You will depend heavily on the progress of the Wire Warriors. Make sure to communicate with them on their progress of the implementation  the `Key` endpoints, `Encrypt` endpoint and `Decrypt` endpoint. You may need these endpoints before they are ready to deliver them, so coordinate carefully.
 
-> [!IMPORTANT] **State**
+> [!IMPORTANT]
 > You must not store any internal state of the ENIGMA machine. This is handled by the Wire Warriors. You may, however, store UI state, for example to remember that a user is currently encrypting a message, or is setting a key.
 
 ### Main tasks
 
 1. Create a simple web page. The web page should for now contain a header with `ENIGMA` showing up.
 
-> [!NOTE] **Init values**
+> [!NOTE]
 > You may hardcode any initialisation values. It's beyond the scope of this UI to ask the user for input. See it as a machine setup - this was handled by an operator and had nothing to do with UI.
 
-> [!TIP] Use Bootstrap
+> [!TIP]
 > Bootstrap can give you a very quick set of CSS classes to get a good looking starting site with minimal effort
 
 2. Add a `Mode` button group to the website. The supported modes should be `Encrypt`, `Decrypt` and `Set Key`. The mode button should be highlighting to the user which mode is currently active.
@@ -34,7 +34,7 @@ You will be responsible for the machine's front end and UI.
 
 8. Add an extra mode, called `Plugs`. When the user selects this, they can enter 2-letter strings to add plugs to the machine. To do this, you can post the plug to the `/machine/plugs` POST endpoint.
 
-> [!NOTE] **Plugs**
+> [!NOTE]
 > A plug is a connection that performs optional static encoding of letters before sending the signal through the machine. A single letter may only ever be plugged once to a single other letter.
 > 
 > **Example** if the letter `A` is plugged to `E`, and the user inputs an `A`, this then is first encoded to an `E`, then sent through the machine for encryption. Similarly, if the the user types an `E`, it's first encoded to an `A`. If a user typed an `F`, and it comes out of encryption as an `A` the plug would then also encode that to an `E` as the final output.
