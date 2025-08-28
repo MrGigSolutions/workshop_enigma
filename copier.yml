@@ -1,9 +1,0 @@
-# Questions
-team:
-    type: str
-    help: "What team are you?"
-    default: Revolutionaries
-    choices:
-      - Revolutionaries
-      - Wire Warriors
-      - Keyboard Clan
